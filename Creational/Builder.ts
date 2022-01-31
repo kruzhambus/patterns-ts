@@ -1,34 +1,40 @@
-interface Place {
-    namePlace: string;
-    coordinate: string;
+class Place {
+    public name:string;
+    public point:string;
 }
 
-class Builder {
-    private readonly _place: Place;
+interface IPlace {
+    namePlace(namePlace: string);
+    coordinate(coordinate:string);
+    build():Place;
+}
 
-    constructor() {
-        this._place = {
-            namePlace: "",
-            coordinate: ""
-        };
+class Builder implements IPlace {
+    private place: Place
+
+    constructor(){
+        this.place = new Place()
     }
 
-    namePlace(namePlace: string): Builder {
-        this._place.namePlace = namePlace;
+    namePlace(namePlace: string) {
+        this.place.name = namePlace;
         return this;
     }
 
-    coordinate(coordinate: string): Builder {
-        this._place.coordinate = coordinate;
-        return this;
+    coordinate(coordinate: string) {
+        this.place.point = coordinate;
+        return this 
     }
 
     build(): Place {
-        return this._place;
+        return this.place;
     }
+
 }
 
-const builderPlace: Place = new Builder().namePlace("Some state").coordinate("123.12.123.4..1.2").build();
-const builderPlaceNoneName: Place = new Builder().coordinate("123.345.23.4.56.1.3.5").build();
-console.log(builderPlace);
-console.log(builderPlaceNoneName);
+const town = new Builder().coordinate("1132.4123.456.1.123").namePlace("SomeTown").build();
+const country = new Builder().namePlace("Some").namePlace("SomeCountry").build();
+const river = new Builder().namePlace("Some").namePlace("SomeRiver").coordinate("123.124.124.124").coordinate("34.51.35.22.99.0").build();
+console.log(town );
+console.log(country);
+console.log(river);

@@ -1,3 +1,4 @@
+
 interface Product {
     someProduct(): string;
 }

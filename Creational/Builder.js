@@ -1,24 +1,28 @@
+var Place = /** @class */ (function () {
+    function Place() {
+    }
+    return Place;
+}());
 var Builder = /** @class */ (function () {
     function Builder() {
-        this._place = {
-            namePlace: "",
-            coordinate: ""
-        };
+        this.place = new Place();
     }
     Builder.prototype.namePlace = function (namePlace) {
-        this._place.namePlace = namePlace;
+        this.place.name = namePlace;
         return this;
     };
     Builder.prototype.coordinate = function (coordinate) {
-        this._place.coordinate = coordinate;
+        this.place.point = coordinate;
         return this;
     };
     Builder.prototype.build = function () {
-        return this._place;
+        return this.place;
     };
     return Builder;
 }());
-var builderPlace = new Builder().namePlace("Some state").coordinate("123.12.123.4..1.2").build();
-var builderPlaceNoneName = new Builder().coordinate("123.345.23.4.56.1.3.5").build();
-console.log(builderPlace);
-console.log(builderPlaceNoneName);
+var town = new Builder().coordinate("1132.4123.456.1.123").namePlace("SomeTown").build();
+var country = new Builder().namePlace("Some").namePlace("SomeCountry").build();
+var river = new Builder().namePlace("Some").namePlace("SomeRiver").coordinate("123.124.124.124").coordinate("34.51.35.22.99.0").build();
+console.log(town);
+console.log(country);
+console.log(river);
